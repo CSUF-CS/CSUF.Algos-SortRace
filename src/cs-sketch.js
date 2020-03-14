@@ -1,3 +1,11 @@
+/** Quick Sort Init Data. */
+var qs_data = [5, 2, 9, 6, 3, 6, 4];
+/** <Sort Algo #2> Init Data. */
+var sort2_data = [5, 2, 9, 6, 3, 6, 4];
+/** <Sort Algo #3> Init Data. */
+var sort3_data = [5, 2, 9, 6, 3, 6, 4];
+
+// General vars.
 var rows = 50;
 var cols = 34;
 var cell_size = 20;
@@ -34,7 +42,7 @@ function setup() {
   // Need to draw entire grid during setup.
   for (let row = 0; row < rows; row++) {
     for (let col = 0; col < cols; col++) {
-      if (col == 10 || col == 11 || col == 22 || col == 23) continue; // Skip this cell.
+      if (col == 10 || col == 11 || col == 22 || col == 23) continue; // Skip these cells.
       setup_DrawCell(row, col, getColor(grid[0][col]));
     }
   }
@@ -66,8 +74,8 @@ function draw()  // P5 Frame Re-draw Fcn, Called for Every Frame.
   }
 }
 
-// Sorting algorithm #1 code.
-function draw_Algo1() {
+// Quick Sort Algo code for every draw instance.
+function draw_QuickSort() {
   // Write your code here.
 
 }
@@ -75,12 +83,14 @@ function draw_Algo1() {
 // Sorting algorithm #2 code.
 function draw_Algo2() {
   // Write your code here.
+  /* Use your own data: */ sort2_data;
 
 }
 
 // Sorting algorithm #3 code.
 function draw_Algo3() {
   // Write your code here.
+  /* Use your own data: */ sort3_data;
 
 }
 
