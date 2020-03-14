@@ -31,7 +31,7 @@ function setup() {
   createCanvas(680, 1000);
   background('white');
 
-  for (var row = 0; row < rows; row++) {
+  for (let row = 0; row < rows; row++) {
     grid[row] = [];
   }
 
@@ -59,7 +59,7 @@ function setup() {
  * Draw cell with the appropriate number as passed in number property.
  * @param {*} row 
  * @param {*} col 
- * @param {*} number 
+ * @param {*} number The text to draw in the cell.
  */
 function setup_DrawCell(row, col, number) {
   var x = col * cell_size;
