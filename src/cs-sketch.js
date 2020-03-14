@@ -33,28 +33,48 @@ function setup() {
 
   for (var row = 0; row < rows; row++) {
     grid[row] = [];
-    for (var col = 0; col < cols; col++) {
-      grid[row][col] = 0; // Set each cell to white/blank.
-    }
   }
 
-  // grid[0][20] = 1;    // seeded generation (draw sorting algo init here)
+  // Init quick sort in column 1 here (cols: 0-9).
+  for (let dataIndex = 0; dataIndex < qs_data.length; dataIndex++) {
+    grid[0][dataIndex] = qs_data[dataIndex];
+  }
+
+  // Init algo 2 in column 2 here (cols: 12-21).
+
+
+  // Init algo 3 in column 3 here (cols: 24-33).
+
+
   // Need to draw entire grid during setup.
   for (let row = 0; row < rows; row++) {
     for (let col = 0; col < cols; col++) {
       if (col == 10 || col == 11 || col == 22 || col == 23) continue; // Skip these cells.
-      setup_DrawCell(row, col, getColor(grid[0][col]));
+      setup_DrawCell(row, col, grid[row][col]);
     }
   }
 }
 
-function setup_DrawCell(row, col, color) {
+/**
+ * Draw cell with the appropriate number as passed in number property.
+ * @param {*} row 
+ * @param {*} col 
+ * @param {*} number 
+ */
+function setup_DrawCell(row, col, number) {
   var x = col * cell_size;
   var y = row * cell_size;
 
-  fill(color);
+  // Draw the white square.
+  fill("white");
   stroke(0);
   rect(x, y, 20, 20);
+
+  // Draw the number in the previous square.
+  fill("black");
+  if (number) {
+    text(String(number), x + 2, y + 14);
+  }
 }
 
 function draw()  // P5 Frame Re-draw Fcn, Called for Every Frame.
@@ -64,7 +84,7 @@ function draw()  // P5 Frame Re-draw Fcn, Called for Every Frame.
     //draw_Cella150(); (Project #1 Code)
 
     // Draw Next Step of Sort Algo #1
-    draw_Algo1();
+    draw_QuickSort();
 
     // Draw Next Step of Sort Algo #2
     draw_Algo2();
