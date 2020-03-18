@@ -1,13 +1,13 @@
 /** Quick Sort Init Data. */
-var qs_data = [5, 2, 9, 6, 3, 6, 4];
+var qs_data = ['F','D',8,'A',1,5,9,3,4,7,9,5];
 /** <Sort Algo #2> Init Data. */
-var sort2_data = [5, 2, 9, 6, 3, 6, 4];
+var sort2_data = ['F','D',8,'A',1,5,9,3,4,7,9,5];
 /** <Sort Algo #3> Init Data. */
-var sort3_data = [5, 2, 9, 6, 3, 6, 4];
+var sort3_data = ['F','D',8,'A',1,5,9,3,4,7,9,5];
 
 // General vars.
 var rows = 50;
-var cols = 34;
+var cols = 40;
 var cell_size = 20;
 var grid = [];
 var g_frame_cnt = 0; // Setup a P5 display-frame counter, to do anim
@@ -25,10 +25,10 @@ var prevCell = {
 function setup() {
   // Grid with 3 columns of 10 cells wide 
   //      with 2 sets of 2 cells wide empty columns for spacers.
-  // Total Cols: (3 * 10) + (2 * 2) = 34 columns
+  // Total Cols: (3 * 12) + (2 * 2) = 40 columns
   // Total Rows: 50 rows
 
-  createCanvas(680, 1000);
+  createCanvas(800, 1000);
   background('white');
 
   for (let row = 0; row < rows; row++) {
@@ -49,7 +49,7 @@ function setup() {
   // Need to draw entire grid during setup.
   for (let row = 0; row < rows; row++) {
     for (let col = 0; col < cols; col++) {
-      if (col == 10 || col == 11 || col == 22 || col == 23) continue; // Skip these cells.
+      if (col == 12 || col == 13 || col == 26 || col == 27) continue; // Skip these cells.
       setup_DrawCell(row, col, grid[row][col]);
     }
   }
