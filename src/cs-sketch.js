@@ -1,5 +1,5 @@
 /** Quick Sort Init Data. */
-var qs_data = ['F','D',8,'A',1,5,9,3,4,7,9,5,1,1,1,1,1,1,1,1,1,2];
+var qs_data = ['F','D',8,'A',1,5,9,3,4,7,9,5];
 /** <Sort Algo #2> Init Data. */
 var sort2_data = ['F','D',8,'A',1,5,9,3,4,7,9,5];
 /** <Sort Algo #3> Init Data. */
@@ -41,14 +41,9 @@ function setup() {
   }
 
   // Init algo 2 in column 2 here (cols: 12-21).
-  // for (let dataIndex = 26; (dataIndex-26) < qs_data.length; dataIndex++) {
-  //   grid[0].push(qs_data[dataIndex-26]);
-  // }
+
 
   // Init algo 3 in column 3 here (cols: 24-33).
-  // for (let dataIndex = 52; (dataIndex-52) < qs_data.length; dataIndex++) {
-  //   grid[0].push(qs_data[dataIndex-52]);
-  // }
 
 
   // Need to draw entire grid during setup.
