@@ -1,5 +1,5 @@
 /** Quick Sort Init Data. */
-var qs_data = ['F','D',8,'A',1,5,9,3,4,7,9,5];
+var qs_data = ['F','D',8,'A',1,5,9,3,4,7,9,5,1,1,1,1,1,1,1,1,1,2];
 /** <Sort Algo #2> Init Data. */
 var sort2_data = ['F','D',8,'A',1,5,9,3,4,7,9,5];
 /** <Sort Algo #3> Init Data. */
@@ -7,7 +7,7 @@ var sort3_data = ['F','D',8,'A',1,5,9,3,4,7,9,5];
 
 // General vars.
 var rows = 50;
-var cols = 40;
+var cols = 70;
 var cell_size = 20;
 var grid = [];
 var g_frame_cnt = 0; // Setup a P5 display-frame counter, to do anim
@@ -28,11 +28,11 @@ function setup() {
   // Total Cols: (3 * 12) + (2 * 2) = 40 columns
   // Total Rows: 50 rows
 
-  createCanvas(800, 1000);
+  createCanvas(1400, 1000);
   background('white');
 
   for (let row = 0; row < rows; row++) {
-    grid[row] = [];
+    grid[row] = new Array(72);
   }
 
   // Init quick sort in column 1 here (cols: 0-9).
@@ -41,15 +41,20 @@ function setup() {
   }
 
   // Init algo 2 in column 2 here (cols: 12-21).
-
+  // for (let dataIndex = 26; (dataIndex-26) < qs_data.length; dataIndex++) {
+  //   grid[0].push(qs_data[dataIndex-26]);
+  // }
 
   // Init algo 3 in column 3 here (cols: 24-33).
+  // for (let dataIndex = 52; (dataIndex-52) < qs_data.length; dataIndex++) {
+  //   grid[0].push(qs_data[dataIndex-52]);
+  // }
 
 
   // Need to draw entire grid during setup.
   for (let row = 0; row < rows; row++) {
     for (let col = 0; col < cols; col++) {
-      if (col == 12 || col == 13 || col == 26 || col == 27) continue; // Skip these cells.
+      if (col == 22 || col == 23 || col == 46 || col == 47) continue; // Skip these cells.
       setup_DrawCell(row, col, grid[row][col]);
     }
   }
