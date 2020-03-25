@@ -1,0 +1,26 @@
+[1mdiff --cc src/cs-sketch.js[m
+[1mindex f8390d0,89c1a34..0000000[m
+[1m--- a/src/cs-sketch.js[m
+[1m+++ b/src/cs-sketch.js[m
+[36m@@@ -83,14 -83,14 +83,19 @@@[m [mfunction draw()  // P5 Frame Re-draw Fc[m
+    if (0 == g_frame_cnt % g_frame_mod) {[m
+      //draw_Cella150(); (Project #1 Code)[m
+  [m
+[32m++<<<<<<< HEAD[m
+[32m +    // Draw Next Step of Sort Algo #1[m
+[32m +    algo_QuickSort();[m
+[32m++=======[m
+[32m+     // Draw Next Step of Sort Algo #01[m
+[32m+     draw_QuickSort();[m
+[32m++>>>>>>> b099ba4b17de2283625af885129409ee3dd63587[m
+  [m
+      // Draw Next Step of Sort Algo #2[m
+[31m -    draw_Algo2();[m
+[32m +    algo_Algo2();[m
+  [m
+      // Draw Next Step of Sort Algo #3[m
+[31m -    draw_Algo3();[m
+[32m +    algo_Algo3();[m
+    }[m
+  }[m
+  [m

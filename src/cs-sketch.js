@@ -108,19 +108,19 @@ function draw()  // P5 Frame Re-draw Fcn, Called for Every Frame.
 
 function RaceManager() {
   // Draw Next Step of Sort Algo #1
-  if (draw_QuickSort(qs_state) == null) {
+  if (algo_QuickSort(qs_state) == null) {
     // Finished sorting, end loop.
     qs_state.sorted = true;
   }
 
   // Draw Next Step of Sort Algo #2
-  if (draw_PoreSort(ps_state) == null) {
+  if (algo_PoreSort(ps_state) == null) {
     // Finished sorting, end loop.
     ps_state.sorted = true;
   }
 
   // Draw Next Step of Sort Algo #3
-  if (draw_Algo3(a3_state) == null) {
+  if (algo_Algo3(a3_state) == null) {
     // Finished sorting, end loop.
     a3_state.sorted = true;
   }
@@ -145,14 +145,14 @@ function draw_UpdateData() {
 }
 
 // Quick Sort Algo code for every draw instance.
-function draw_QuickSort(state) {
+function algo_QuickSort(state) {
   // Write your code here.
 
   // Return null when finished.
 }
 
 // Sorting algorithm #2 code.
-function draw_PoreSort(state) {
+function algo_PoreSort(state) {
   // Write your code here.
   /* Use your own state: */ state;
   
@@ -160,7 +160,7 @@ function draw_PoreSort(state) {
 }
 
 // Sorting algorithm #3 code.
-function draw_Algo3(state) {
+function algo_Algo3(state) {
   // Write your code here.
   /* Use your own state: */ state;
 
