@@ -49,7 +49,7 @@ function setup() {
   // Need to draw entire grid during setup.
   for (let row = 0; row < rows; row++) {
     for (let col = 0; col < cols; col++) {
-      if (col == 22 || col == 23 || col == 46 || col == 47) continue; // Skip these cells.
+      if (col == 22 || col == 23 || col == 46 || col == 47) continue; // Skip these cells (for dividers).
       setup_DrawCell(row, col, grid[row][col]);
     }
   }
@@ -84,31 +84,31 @@ function draw()  // P5 Frame Re-draw Fcn, Called for Every Frame.
     //draw_Cella150(); (Project #1 Code)
 
     // Draw Next Step of Sort Algo #1
-    draw_QuickSort();
+    algo_QuickSort();
 
     // Draw Next Step of Sort Algo #2
-    draw_Algo2();
+    algo_Algo2();
 
     // Draw Next Step of Sort Algo #3
-    draw_Algo3();
+    algo_Algo3();
   }
 }
 
 // Quick Sort Algo code for every draw instance.
-function draw_QuickSort() {
+function algo_QuickSort() {
   // Write your code here.
 
 }
 
 // Sorting algorithm #2 code.
-function draw_Algo2() {
+function algo_Algo2() {
   // Write your code here.
   /* Use your own data: */ sort2_data;
 
 }
 
 // Sorting algorithm #3 code.
-function draw_Algo3() {
+function algo_Algo3() {
   // Write your code here.
   /* Use your own data: */ sort3_data;
 
