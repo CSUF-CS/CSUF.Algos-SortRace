@@ -1,9 +1,9 @@
 /** Quick Sort Init Data. */
-var qs_data = ['F','D',8,'A',1,5,9,3,4,7,9,5];
+var qs_data = ['F', 'D', 8, 'A', 1, 5, 9, 3, 4, 7, 9, 5];
 /** <Sort Algo #2> Init Data. */
-var sort2_data = ['F','D',8,'A',1,5,9,3,4,7,9,5];
+var sort2_data = ['F', 'D', 8, 'A', 1, 5, 9, 3, 4, 7, 9, 5];
 /** <Sort Algo #3> Init Data. */
-var sort3_data = ['F','D',8,'A',1,5,9,3,4,7,9,5];
+var sort3_data = ['F', 'D', 8, 'A', 1, 5, 9, 3, 4, 7, 9, 5];
 
 // General vars.
 var rows = 50;
