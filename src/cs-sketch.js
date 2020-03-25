@@ -1,9 +1,9 @@
 /** Quick Sort Init Data. */
-var qs_data = ['F','D',8,'A',1,5,9,3,4,7,9,5];
+var qs_data = ['F', 'D', 8, 'A', 1, 5, 9, 3, 4, 7, 9, 5];
 /** <Sort Algo #2> Init Data. */
-var sort2_data = ['F','D',8,'A',1,5,9,3,4,7,9,5];
+var sort2_data = ['F', 'D', 8, 'A', 1, 5, 9, 3, 4, 7, 9, 5];
 /** <Sort Algo #3> Init Data. */
-var sort3_data = ['F','D',8,'A',1,5,9,3,4,7,9,5];
+var sort3_data = ['F', 'D', 8, 'A', 1, 5, 9, 3, 4, 7, 9, 5];
 
 // General vars.
 var rows = 50;
@@ -83,7 +83,7 @@ function draw()  // P5 Frame Re-draw Fcn, Called for Every Frame.
   if (0 == g_frame_cnt % g_frame_mod) {
     //draw_Cella150(); (Project #1 Code)
 
-    // Draw Next Step of Sort Algo #1
+    // Draw Next Step of Sort Algo #01
     draw_QuickSort();
 
     // Draw Next Step of Sort Algo #2
