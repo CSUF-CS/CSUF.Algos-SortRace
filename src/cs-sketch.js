@@ -87,7 +87,7 @@ function draw()  // P5 Frame Re-draw Fcn, Called for Every Frame.
     draw_QuickSort();
 
     // Draw Next Step of Sort Algo #2
-    draw_Algo2();
+    draw_PoreSort();
 
     // Draw Next Step of Sort Algo #3
     draw_Algo3();
@@ -101,7 +101,7 @@ function draw_QuickSort() {
 }
 
 // Sorting algorithm #2 code.
-function draw_Algo2() {
+function draw_PoreSort() {
   // Write your code here.
   /* Use your own data: */ sort2_data;
 
