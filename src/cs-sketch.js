@@ -86,25 +86,36 @@ function draw()  // P5 Frame Re-draw Fcn, Called for Every Frame.
   if (0 == g_frame_cnt % g_frame_mod) {
     //draw_Cella150(); (Project #1 Code)
 
-    RaceManager();
+    if (RaceManager() == true) {
+      // End looping, (finshed sorting).
+    }
   }
 }
 
 function RaceManager() {
   // Draw Next Step of Sort Algo #1
-  draw_QuickSort(qs_state);
+  if (draw_QuickSort(qs_state) == null) {
+    // Finished sorting, end loop.
+    qs_state.sorted = true;
+  }
 
   // Draw Next Step of Sort Algo #2
   draw_PoreSort();
 
   // Draw Next Step of Sort Algo #3
   draw_Algo3();
+
+  if (qs_state.sorted) {
+    // Sorting is done.
+    return true;
+  }
 }
 
 // Quick Sort Algo code for every draw instance.
 function draw_QuickSort(state) {
   // Write your code here.
 
+  // Return null when finished.
 }
 
 // Sorting algorithm #2 code.
