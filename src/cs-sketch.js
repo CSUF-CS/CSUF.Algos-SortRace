@@ -1,5 +1,8 @@
 /** Quick Sort Init Data. */
-var qs_data = ['F', 'D', 8, 'A', 1, 5, 9, 3, 4, 7, 9, 5];
+var qs_state = {
+  sorted: false,
+  data: ['F', 'D', 8, 'A', 1, 5, 9, 3, 4, 7, 9, 5],
+}
 /** <Sort Algo #2> Init Data. */
 var sort2_data = ['F', 'D', 8, 'A', 1, 5, 9, 3, 4, 7, 9, 5];
 /** <Sort Algo #3> Init Data. */
@@ -36,8 +39,8 @@ function setup() {
   }
 
   // Init quick sort in column 1 here (cols: 0-9).
-  for (let dataIndex = 0; dataIndex < qs_data.length; dataIndex++) {
-    grid[0][dataIndex] = qs_data[dataIndex];
+  for (let dataIndex = 0; dataIndex < qs_state.data.length; dataIndex++) {
+    grid[0][dataIndex] = qs_state.data[dataIndex];
   }
 
   // Init algo 2 in column 2 here (cols: 12-21).
@@ -83,19 +86,23 @@ function draw()  // P5 Frame Re-draw Fcn, Called for Every Frame.
   if (0 == g_frame_cnt % g_frame_mod) {
     //draw_Cella150(); (Project #1 Code)
 
-    // Draw Next Step of Sort Algo #1
-    draw_QuickSort();
-
-    // Draw Next Step of Sort Algo #2
-    draw_PoreSort();
-
-    // Draw Next Step of Sort Algo #3
-    draw_Algo3();
+    RaceManager();
   }
 }
 
+function RaceManager() {
+  // Draw Next Step of Sort Algo #1
+  draw_QuickSort(qs_state);
+
+  // Draw Next Step of Sort Algo #2
+  draw_PoreSort();
+
+  // Draw Next Step of Sort Algo #3
+  draw_Algo3();
+}
+
 // Quick Sort Algo code for every draw instance.
-function draw_QuickSort() {
+function draw_QuickSort(state) {
   // Write your code here.
 
 }
