@@ -97,7 +97,7 @@ function draw()  // P5 Frame Re-draw Fcn, Called for Every Frame.
 // Quick Sort Algo code for every draw instance.
 function draw_QuickSort() {
   // Write your code here.
-
+  // Hi //
 }
 
 // Sorting algorithm #2 code.
