@@ -4,9 +4,15 @@ var qs_state = {
   data: ['F', 'D', 8, 'A', 1, 5, 9, 3, 4, 7, 9, 5],
 }
 /** <Sort Algo #2> Init Data. */
-var sort2_data = ['F', 'D', 8, 'A', 1, 5, 9, 3, 4, 7, 9, 5];
+var ps_state = {
+  sorted: false,
+  data: ['F', 'D', 8, 'A', 1, 5, 9, 3, 4, 7, 9, 5]
+}
 /** <Sort Algo #3> Init Data. */
-var sort3_data = ['F', 'D', 8, 'A', 1, 5, 9, 3, 4, 7, 9, 5];
+var a3_state = {
+  sorted: false,
+  data: ['F', 'D', 8, 'A', 1, 5, 9, 3, 4, 7, 9, 5]
+}
 
 // General vars.
 var rows = 50;
@@ -102,12 +108,18 @@ function RaceManager() {
   }
 
   // Draw Next Step of Sort Algo #2
-  draw_PoreSort();
+  if (draw_PoreSort(ps_state) == null) {
+    // Finished sorting, end loop.
+    ps_state.sorted = true;
+  }
 
   // Draw Next Step of Sort Algo #3
-  draw_Algo3();
+  if (draw_Algo3(a3_state) == null) {
+    // Finished sorting, end loop.
+    a3_state.sorted = true;
+  }
 
-  if (qs_state.sorted) {
+  if (qs_state.sorted && ps_state.sorted && a3_state.sorted) {
     // Sorting is done.
     return { DoneSorting: true };
   } else {
