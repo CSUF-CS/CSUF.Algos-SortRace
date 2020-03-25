@@ -86,8 +86,10 @@ function draw()  // P5 Frame Re-draw Fcn, Called for Every Frame.
   if (0 == g_frame_cnt % g_frame_mod) {
     //draw_Cella150(); (Project #1 Code)
 
-    if (RaceManager() == true) {
-      // End looping, (finshed sorting).
+    if (RaceManager().DoneSorting == false) {
+      // Keep looping (not done sorting).
+
+      // Draw updated state to webpage.
     }
   }
 }
@@ -107,7 +109,9 @@ function RaceManager() {
 
   if (qs_state.sorted) {
     // Sorting is done.
-    return true;
+    return { DoneSorting: true };
+  } else {
+    return { DoneSorting: false };
   }
 }
 
