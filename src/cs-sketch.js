@@ -105,7 +105,7 @@ function draw_PoreSort() {
   // Write your code here.
   /* Use your own data: */ sort2_data;
 
-  // Hello World //
+  // hello this is Naoki // 
 }
 
 // Sorting algorithm #3 code.
