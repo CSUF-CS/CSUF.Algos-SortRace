@@ -96,6 +96,7 @@ function draw()  // P5 Frame Re-draw Fcn, Called for Every Frame.
       // Keep looping (not done sorting).
 
       // Draw updated state to webpage.
+
     }
   }
 }
@@ -135,17 +136,19 @@ function draw_QuickSort(state) {
 }
 
 // Sorting algorithm #2 code.
-function draw_PoreSort() {
+function draw_PoreSort(state) {
   // Write your code here.
-  /* Use your own data: */ sort2_data;
+  /* Use your own state: */ state;
 
+  // Return null when finished.
 }
 
 // Sorting algorithm #3 code.
-function draw_Algo3() {
+function draw_Algo3(state) {
   // Write your code here.
-  /* Use your own data: */ sort3_data;
+  /* Use your own state: */ state;
 
+  // Return null when finished.
 }
 
 
