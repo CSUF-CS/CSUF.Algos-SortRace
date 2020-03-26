@@ -136,33 +136,33 @@ function RaceManager() {
  */
 function draw_UpdateData() {
   // Quick Sort
-  if(!qs_state.sorted){
-    for (index = 0; index < qs_state.data.length; index++){
+  if (!qs_state.sorted) {
+    for (index = 0; index < qs_state.data.length; index++) {
       let col = index;
-      grid[currRow][col] = qs_state.data[index];    
+      grid[currRow][col] = qs_state.data[index];
       drawCell(currRow, col, grid[currRow][col]);
     }
   }
 
   // Poresort
-  if(!ps_state.sorted){
-    for (index = 0; index < ps_state.data.length; index++){
+  if (!ps_state.sorted) {
+    for (index = 0; index < ps_state.data.length; index++) {
       let col = index + 14;
-      grid[currRow][col] = ps_state.data[index];    
+      grid[currRow][col] = ps_state.data[index];
       drawCell(currRow, col, grid[currRow][col]);
     }
   }
 
   // Merge Sort
-  if(!a3_state.sorted){
-    for (index = 0; index < a3_state.data.length; index++){
+  if (!a3_state.sorted) {
+    for (index = 0; index < a3_state.data.length; index++) {
       let col = index + 28;
-      grid[currRow][col] = a3_state.data[index];    
+      grid[currRow][col] = a3_state.data[index];
       drawCell(currRow, col, grid[currRow][col]);
     }
   }
 
-  
+
   // Increment current row for next update.
   currRow++;
 }
@@ -170,7 +170,7 @@ function draw_UpdateData() {
 // Quick Sort Algo code for every draw instance.
 function algo_QuickSort(state) {
   // Write your code here.
-  if(currRow == 5) return null;
+  if (currRow == 5) return null;
   return 1;
 
   // Return null when finished.
@@ -179,27 +179,26 @@ function algo_QuickSort(state) {
 // Sorting algorithm #2 code.
 function algo_PoreSort(state) {
   // Write your code here.
-  /* Use your own state: */ state;
-  return 1;
+  /* Use your own state: */ //state;
 
   let swap = false;
-  
+
   // compare even indexes to their neighbors
-  for (let i = 0; i < state.length; i + 2) {
-    if (state[i] > state[i+1]) {
-      let temp = state[i+1];
-      state[i+1] = state[i];
-      state[i] = temp;
+  for (let i = 0; i < state.data.length; i += 2) {
+    if (String(state.data[i]) > String(state.data[i + 1])) {
+      let temp = state.data[i + 1];
+      state.data[i + 1] = state.data[i];
+      state.data[i] = temp;
       swap = true;
     }
   }
 
   // compare odd indexes to their neighbors
-  for (let i = 1; i < state.length - 1; i + 2) {
-    if (state[i] > state[i+1]) {
-      let temp = state[i+1];
-      state[i+1] = state[i];
-      state[i] = temp;
+  for (let i = 1; i < state.data.length - 1; i += 2) {
+    if (String(state.data[i]) > String(state.data[i + 1])) {
+      let temp = state.data[i + 1];
+      state.data[i + 1] = state.data[i];
+      state.data[i] = temp;
       swap = true;
     }
   }
@@ -207,6 +206,8 @@ function algo_PoreSort(state) {
   // if no swapping took place, return null to notify raceMgr that the array is sorted
   if (swap == false) {
     return null;
+  } else {
+    return 1;
   }
 }
 
