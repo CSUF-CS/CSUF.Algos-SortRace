@@ -6,7 +6,7 @@ var qs_state = {
 /** <Sort Algo #2> Init Data. */
 var ps_state = {
   sorted: false,
-  data: ['F', 'D', 8, 'A', 1, 5, 9, 3, 4, 7, 9, 5]
+  data: ['F', 'D', 8, 'A', 1, 5, 9, 3, 4, 7, 9, 5],
 }
 /** <Sort Algo #3> Init Data. */
 var a3_state = {
@@ -155,8 +155,33 @@ function algo_QuickSort(state) {
 function algo_PoreSort(state) {
   // Write your code here.
   /* Use your own state: */ state;
+
+  let swap = false;
   
-  // Return null when finished.
+  // compare even indexes to their neighbors
+  for (let i = 0; i < state.length; i + 2) {
+    if (state[i] > state[i+1]) {
+      let temp = state[i+1];
+      state[i+1] = state[i];
+      state[i] = temp;
+      swap = true;
+    }
+  }
+
+  // compare odd indexes to their neighbors
+  for (let i = 1; i < state.length - 1; i + 2) {
+    if (state[i] > state[i+1]) {
+      let temp = state[i+1];
+      state[i+1] = state[i];
+      state[i] = temp;
+      swap = true;
+    }
+  }
+
+  // if no swapping took place, return null to notify raceMgr that the array is sorted
+  if (swap == false) {
+    return null;
+  }
 }
 
 // Sorting algorithm #3 code.
