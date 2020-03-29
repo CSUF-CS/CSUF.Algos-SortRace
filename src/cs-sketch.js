@@ -74,7 +74,7 @@ function setup() {
   // Recursive model:
   algo_QuickSort(0, qs_state.data.length - 1);
 
-  merge_sort(0, ms_state.data.length - 1);
+  algo_MergeSort(0, ms_state.data.length - 1);
   // End Recursive model.
 }
 
@@ -304,91 +304,18 @@ function algo_PoreSort(state) {
   }
 }
 
-// /// Sorting algorithm #3 code.
-// function sortNew(l, m, r) {
-//   // Write your code here.
-//   /* Use your own state: */ //state;
-
-//   //find sizes of two subarrays to be merged, sizes n1 and n2
-//   let n1 = m - l + 1;
-//   let n2 = r - m;
-//   var lef = {
-//     sorted: false,
-//     data: [n1],
-//   }
-//   var rig = {
-//     sorted: false,
-//     data: [n2],
-//   }
-//   for (let i = 0; i < n1; i += 1) {
-//     lef.data[i] = ms_state.data[i];
-//   }
-//   for (let j = 0; j < n2; j += 1) {
-//     rig.data[j] = ms_state.data[m + 1 + j];
-//   }
-
-//   //Merge temp arrays
-//   let i = 0;
-//   let j = 0;
-
-//   let k = l;
-//   while (i < n1 && j < n2) {
-//     if (String(lef.data[i]) <= String(rig.data[j])) {
-//       ms_state.data[k] = lef.data[i];
-//       i += 1;
-//     }
-//     else {
-//       ms_state.data[k] = rig.data[j];
-//       j += 1;
-//     }
-//     k += 1;
-//   }
-
-//   //copy in remainder of array
-//   while (i < n1) {
-//     ms_state.data[k] = lef.data[i];
-//     i += 1;
-//     k += 1;
-//   }
-//   while (j < n2) {
-//     ms_state.data[k] = rig.data[j];
-//     j += 1;
-//     k += 1;
-//   }
-//   // Return null when finished.
-// }
-
-// function algo_MergeSort(leftVal, rightVal) {
-//   if (leftVal < rightVal) {
-//     //find middle point
-//     let middle = (leftVal + rightVal) / 2
-
-//     //sort first and second halves
-//     sortNew(ms_state.data, leftVal, middle);
-//     sortNew(ms_state.data, middle + 1, rightVal);
-
-//     // Recursive model:
-//     let update = [...ms_state.data];
-//     ms_state.StepList.push(update);
-//     // End Recursive model.
-
-//     //merge sorted halves
-//     algo_MergeSort(leftVal, middle, rightVal);
-//   }
-// }
-
-function merge_sort (start, end){
+function algo_MergeSort (start, end){
   if(start < end){
     let mid = Math.floor((start + end) / 2)
 
-    merge_sort(start, mid);
-    merge_sort(mid + 1, end);
+    algo_MergeSort(start, mid);
+    algo_MergeSort(mid + 1, end);
 
-    merg(ms_state.data, start, mid, end);
+    merge(ms_state.data, start, mid, end);
   }
 }
 
-function merg(A, start, mid, end) {
+function merge(A, start, mid, end) {
   //stores the starting position of both parts in temporary variables.
  var p = start ,q = mid+1;
  
@@ -416,32 +343,3 @@ function merg(A, start, mid, end) {
    var temp = [...ms_state.data];
    ms_state.StepList.push(temp);
  }
-
-// function newMerge (start, mid, end){
-//   let startLeft = start, startRight = mid+1;
-
-//   var Arr = [], k = 0;
-//   // = new Array(end-start+1)
-
-//   for(let i = start; i <= end; i++){
-//     if(startLeft > mid){
-//       Arr.push(ms_state.data[startRight++]);
-//       // Arr[k++] = ms_state.data[startRight++];
-//     }else if (startRight > end){
-//       Arr.push(ms_state.data[startLeft++]);
-//       // Arr[k++] = ms_state.data[startLeft++];
-//     }else{
-//       Arr.push(ms_state.data[startRight++]);
-//       // Arr[k++] = ms_state.data[startRight++];
-//     }
-//   }
-
-//   ms_state.data = [];
-//   for(let p = 0; p < k; p++){
-//     ms_state.data.push(Arr[p]);
-//   }
-
-//   // Save changes.
-//   let temp = [...ms_state.data];
-//   ms_state.StepList.push(temp);
-// }
