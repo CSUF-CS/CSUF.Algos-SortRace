@@ -197,7 +197,9 @@ function qs_Partition(rawArr, start, end){
   }
 
   // Put pivot in sorted place in array
-  swap(raw, start, newPivotIndex - 1);
+  if (swap(raw, start, newPivotIndex - 1) == 1) {
+    // this indicates that a swap was done
+  }
 
   // Return the new index of the pivot
   return newPivotIndex - 1;
@@ -213,6 +215,7 @@ function swap(arr, firstIndex, secondIndex){
   let temp = arr[firstIndex];
   arr[firstIndex] = arr[secondIndex];
   arr[secondIndex] = temp;
+  return 1;
 }
 
 // Sorting algorithm #2 code.
