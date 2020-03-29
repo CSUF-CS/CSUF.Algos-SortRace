@@ -2,14 +2,8 @@
 var qs_state = {
   sorted: false,
   data: ['F', 'D', 8, 'A', 1, 5, 9, 3, 4, 7, 9, 5],
-  cheat_StepList: [],
-  cheat_CurrStep: 0,
-  // start: 0,
-  // end: 1,
-  // swapedPivot: false,
-  // pivPos: 0,
-  // leftDone: false,
-  // rightDone: false,
+  StepList: [],
+  CurrStep: 0,
 }
 /** <Sort Algo #2> Init Data. */
 var ps_state = {
@@ -75,9 +69,9 @@ function setup() {
     }
   }
 
-  // Cheat:
+  // Recursive model:
   algo_QuickSort(0, qs_state.data.length - 1);
-  // End Cheat.
+  // End Recursive model.
 }
 
 /**
@@ -117,17 +111,17 @@ function draw()  // P5 Frame Re-draw Fcn, Called for Every Frame.
 }
 
 function RaceManager() {
-  // Draw Next Step of Sort Algo #1
+  // Draw Next Step of Sort Algo #1 (Used for Iterative model of QS)
   // if (algo_QuickSort(qs_state) == null) {
   //   // Finished sorting, end loop.
   //   qs_state.sorted = true;
   // }
-  // Cheat:
-  if(qs_state.cheat_CurrStep >= qs_state.cheat_StepList.length){
+  // Recursive model:
+  if(qs_state.CurrStep >= qs_state.StepList.length){
     // Done.
     ps_state.sorted = true;
   }
-  // End Cheat.
+  // End Recursive model.
 
 
   // Draw Next Step of Sort Algo #2
@@ -154,7 +148,7 @@ function RaceManager() {
  * Will draw the updated data for the 3 algos to the screen.
  */
 function draw_UpdateData() {
-  // Quick Sort
+  // Quick Sort (Iterative model)
   // if (!qs_state.sorted) {
   //   for (index = 0; index < qs_state.data.length; index++) {
   //     let col = index;
@@ -162,17 +156,17 @@ function draw_UpdateData() {
   //     drawCell(currRow, col, grid[currRow][col]);
   //   }
   // }
-  // Cheat:
-  if(qs_state.cheat_CurrStep < qs_state.cheat_StepList.length){
-    for(index = 0; index < qs_state.cheat_StepList[qs_state.cheat_CurrStep].length; index++){
+  // Recursive model:
+  if(qs_state.CurrStep < qs_state.StepList.length){
+    for(index = 0; index < qs_state.StepList[qs_state.CurrStep].length; index++){
       let col = index;
-      grid[currRow][col] = qs_state.cheat_StepList[qs_state.cheat_CurrStep][col];
+      grid[currRow][col] = qs_state.StepList[qs_state.CurrStep][col];
       drawCell(currRow, col, grid[currRow][col]);
     }
 
-    qs_state.cheat_CurrStep++;
+    qs_state.CurrStep++;
   }
-  // End Cheat.
+  // End Recursive model.
 
 
   // Poresort
@@ -203,9 +197,10 @@ function algo_QuickSort(start, end) {
   if(start < end){
     var pivPos = qs_Partition(start, end);
 
-    // Cheat Begin:
-    // qs_state.cheat_StepList.push(new Array(qs_state.data));
-    // Cheat End.
+    // Recursive model:
+    let update = [...qs_state.data];
+    qs_state.StepList.push(update);
+    // End Recursive model.
 
     algo_QuickSort(start, pivPos - 1); // Sort the left side of pivot
     algo_QuickSort(pivPos + 1, end); // Sort the right side of pivot
@@ -213,6 +208,11 @@ function algo_QuickSort(start, end) {
   
 }
 
+/**
+ * Quick Sort helper.
+ * @param {*} start Start index
+ * @param {*} end End index
+ */
 function qs_Partition(start, end){
   // Select the pivot (first element)
   var newPivotIndex = start + 1;
@@ -232,13 +232,6 @@ function qs_Partition(start, end){
 
   // Put pivot in sorted place in array
   swap(qs_state.data, start, newPivotIndex - 1);
-
-  // Cheat:
-  let update = [...qs_state.data];
-  qs_state.cheat_StepList.push(update);
-  // End.
-
-  //qs_state.swapedPivot = true;
 
   // Return the new index of the pivot
   return newPivotIndex - 1;
