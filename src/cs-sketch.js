@@ -9,7 +9,6 @@ var qs_state = {
 var ps_state = {
   sorted: false,
   data: ['F', 'D', 8, 'A', 1, 5, 9, 3, 4, 7, 9, 5],
-  CurrStep: 0,
 }
 /** <Sort Algo #3> Init Data. */
 var ms_state = {
@@ -111,9 +110,49 @@ function draw()  // P5 Frame Re-draw Fcn, Called for Every Frame.
 
       // Draw updated state to webpage.
       draw_UpdateData();
-    } else {
+    }else{
       console.log('-- Done sorting');
     }
+  }
+}
+
+function RaceManager() {
+  // Draw Next Step of Sort Algo #1 (Used for Iterative model of QS)
+  // if (algo_QuickSort(qs_state) == null) {
+  //   // Finished sorting, end loop.
+  //   qs_state.sorted = true;
+  // }
+  // Recursive model:
+  if (qs_state.CurrStep >= qs_state.StepList.length) {
+    // Done.
+    ps_state.sorted = true;
+  }
+  // End Recursive model.
+
+
+  // Draw Next Step of Sort Algo #2
+  if (algo_PoreSort(ps_state) == null) {
+    // Finished sorting, end loop.
+    ps_state.sorted = true;
+  }
+
+  // Draw Next Step of Sort Algo #3
+  // if (algo_MergeSort(ms_state) == null) {
+  //   // Finished sorting, end loop.
+  //   ms_state.sorted = true;
+  // }
+  // Recursive model:
+  if (ms_state.CurrStep >= ms_state.StepList.length) {
+    // Done.
+    ms_state.sorted = true;
+  }
+  // End.
+
+  if (qs_state.sorted && ps_state.sorted && ms_state.sorted) {
+    // Sorting is done.
+    return { DoneSorting: true };
+  } else {
+    return { DoneSorting: false };
   }
 }
 
@@ -175,19 +214,6 @@ function draw_UpdateData() {
   currRow++;
 }
 
-function draw_FinalHighlight(row, col, data) {
-  let x = col * cell_size;
-  let y = row * cell_size;
-
-  fill('white');
-  stroke('red');
-  rect(x, y, 20, 20);
-  if (data) {
-    fill('black');
-    text(String(data), x + 2, y + 14);
-  }
-}
-
 function RaceManager() {
   // Draw Next Step of Sort Algo #1 (Used for Iterative model of QS)
   // if (algo_QuickSort(qs_state) == null) {
@@ -198,24 +224,14 @@ function RaceManager() {
   if (qs_state.CurrStep >= qs_state.StepList.length) {
     // Done.
     qs_state.sorted = true;
-
-    // Highlight sorted array.
-    for (let col = 0; col < 12; col++) {
-      draw_FinalHighlight(qs_state.CurrStep, col, qs_state.data[col]);
-    }
   }
   // End Recursive model.
 
 
   // Draw Next Step of Sort Algo #2
-  if (!ps_state.sorted && algo_PoreSort(ps_state) == null) {
+  if (algo_PoreSort(ps_state) == null) {
     // Finished sorting, end loop.
     ps_state.sorted = true;
-
-    // Highlight sorted array.
-    for (let col = 14; col < 26; col++) {
-      draw_FinalHighlight(ps_state.CurrStep, col, ps_state.data[col - 14]);
-    }
   }
 
   // Draw Next Step of Sort Algo #3
@@ -227,11 +243,6 @@ function RaceManager() {
   if (ms_state.CurrStep >= ms_state.StepList.length) {
     // Done.
     ms_state.sorted = true;
-
-    // Highlight sorted array.
-    for (let col = 28; col < 40; col++) {
-      draw_FinalHighlight(ms_state.CurrStep, col, ms_state.data[col - 28]);
-    }
   }
   // End.
 
@@ -304,7 +315,6 @@ function swap(arr, firstIndex, secondIndex) {
 function algo_PoreSort(state) {
   // Write your code here.
   /* Use your own state: */ //state;
-  ps_state.CurrStep++;
 
   let swap = false;
 
@@ -332,7 +342,6 @@ function algo_PoreSort(state) {
   if (swap == false) {
     return null;
   } else {
-    // ps_state.CurrStep++; (Should be here to prevent duplicate last line)
     return 1;
   }
 }
