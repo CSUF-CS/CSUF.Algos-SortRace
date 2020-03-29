@@ -5,6 +5,9 @@ var qs_state = {
   start: 0,
   end: 1,
   swapedPivot: false,
+  pivPos: 0,
+  leftDone: false,
+  rightDone: false,
 }
 /** <Sort Algo #2> Init Data. */
 var ps_state = {
@@ -174,13 +177,16 @@ function draw_UpdateData() {
 function algo_QuickSort(state) {
   // simple:
 
-  if(start < end){
-    var piv_pos = qs_Partition(qs_state.data)
+  if(qs_state.start < qs_state.end){
+    qs_state.pivPos = qs_Partition(qs_state.data)
   }else{
     if(!qs_state.leftDone){
       // Update start/end for left recusion
     }else if(!qs_state.rightDone){
       // Update start/end for right recusion
+    }else{
+      // Done sorting return null.
+      return null;
     }
   }
 
