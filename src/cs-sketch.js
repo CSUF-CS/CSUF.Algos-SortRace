@@ -114,46 +114,6 @@ function draw()  // P5 Frame Re-draw Fcn, Called for Every Frame.
   }
 }
 
-function RaceManager() {
-  // Draw Next Step of Sort Algo #1 (Used for Iterative model of QS)
-  // if (algo_QuickSort(qs_state) == null) {
-  //   // Finished sorting, end loop.
-  //   qs_state.sorted = true;
-  // }
-  // Recursive model:
-  if (qs_state.CurrStep >= qs_state.StepList.length) {
-    // Done.
-    qs_state.sorted = true;
-  }
-  // End Recursive model.
-
-
-  // Draw Next Step of Sort Algo #2
-  if (algo_PoreSort(ps_state) == null) {
-    // Finished sorting, end loop.
-    ps_state.sorted = true;
-  }
-
-  // Draw Next Step of Sort Algo #3
-  // if (algo_MergeSort(ms_state) == null) {
-  //   // Finished sorting, end loop.
-  //   ms_state.sorted = true;
-  // }
-  // Recursive model:
-  if (ms_state.CurrStep >= ms_state.StepList.length) {
-    // Done.
-    ms_state.sorted = true;
-  }
-  // End.
-
-  if (qs_state.sorted && ps_state.sorted && ms_state.sorted) {
-    // Sorting is done.
-    return { DoneSorting: true };
-  } else {
-    return { DoneSorting: false };
-  }
-}
-
 /**
  * Will draw the updated data for the 3 algos to the screen.
  */
@@ -210,6 +170,46 @@ function draw_UpdateData() {
 
   // Increment current row for next update.
   currRow++;
+}
+
+function RaceManager() {
+  // Draw Next Step of Sort Algo #1 (Used for Iterative model of QS)
+  // if (algo_QuickSort(qs_state) == null) {
+  //   // Finished sorting, end loop.
+  //   qs_state.sorted = true;
+  // }
+  // Recursive model:
+  if (qs_state.CurrStep >= qs_state.StepList.length) {
+    // Done.
+    qs_state.sorted = true;
+  }
+  // End Recursive model.
+
+
+  // Draw Next Step of Sort Algo #2
+  if (algo_PoreSort(ps_state) == null) {
+    // Finished sorting, end loop.
+    ps_state.sorted = true;
+  }
+
+  // Draw Next Step of Sort Algo #3
+  // if (algo_MergeSort(ms_state) == null) {
+  //   // Finished sorting, end loop.
+  //   ms_state.sorted = true;
+  // }
+  // Recursive model:
+  if (ms_state.CurrStep >= ms_state.StepList.length) {
+    // Done.
+    ms_state.sorted = true;
+  }
+  // End.
+
+  if (qs_state.sorted && ps_state.sorted && ms_state.sorted) {
+    // Sorting is done.
+    return { DoneSorting: true };
+  } else {
+    return { DoneSorting: false };
+  }
 }
 
 // Quick Sort Algo code for every draw instance.
