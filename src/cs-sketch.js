@@ -11,9 +11,11 @@ var ps_state = {
   data: ['F', 'D', 8, 'A', 1, 5, 9, 3, 4, 7, 9, 5],
 }
 /** <Sort Algo #3> Init Data. */
-var a3_state = {
+var ms_state = {
   sorted: false,
-  data: ['F', 'D', 8, 'A', 1, 5, 9, 3, 4, 7, 9, 5]
+  data: ['F', 'D', 8, 'A', 1, 5, 9, 3, 4, 7, 9, 5],
+  StepList: [],
+  CurrStep: 0,
 }
 
 // General vars.
@@ -57,8 +59,8 @@ function setup() {
   }
 
   // Init algo 3 in column 3 here (cols: 28-39).
-  for (let dataIndex = 0; dataIndex < a3_state.data.length; dataIndex++) {
-    grid[0][dataIndex + 28] = a3_state.data[dataIndex];
+  for (let dataIndex = 0; dataIndex < ms_state.data.length; dataIndex++) {
+    grid[0][dataIndex + 28] = ms_state.data[dataIndex];
   }
 
   // Need to draw entire grid during setup.
@@ -131,12 +133,12 @@ function RaceManager() {
   }
 
   // Draw Next Step of Sort Algo #3
-  if (algo_MergeSort(a3_state) == null) {
+  if (algo_MergeSort(ms_state) == null) {
     // Finished sorting, end loop.
-    a3_state.sorted = true;
+    ms_state.sorted = true;
   }
 
-  if (qs_state.sorted && ps_state.sorted && a3_state.sorted) {
+  if (qs_state.sorted && ps_state.sorted && ms_state.sorted) {
     // Sorting is done.
     return { DoneSorting: true };
   } else {
@@ -178,15 +180,25 @@ function draw_UpdateData() {
     }
   }
 
-  // Merge Sort
-  if (!a3_state.sorted) {
-    for (index = 0; index < a3_state.data.length; index++) {
+  // Merge Sort (Iterative model)
+  // if (!ms_state.sorted) {
+  //   for (index = 0; index < ms_state.data.length; index++) {
+  //     let col = index + 28;
+  //     grid[currRow][col] = ms_state.data[index];
+  //     drawCell(currRow, col, grid[currRow][col]);
+  //   }
+  // }
+  // Recursive model:
+  if(ms_state.CurrStep < ms_state.StepList.length){
+    for(index = 0; index <ms_state.StepList[ms_state.CurrStep].length; index++){
       let col = index + 28;
-      grid[currRow][col] = a3_state.data[index];
+      grid[currRow][col] = ms_state.StepList[ms_state.CurrStep][col];
       drawCell(currRow, col, grid[currRow][col]);
     }
-  }
 
+    ms_state.CurrStep++;
+  }
+  // End.
 
   // Increment current row for next update.
   currRow++;
