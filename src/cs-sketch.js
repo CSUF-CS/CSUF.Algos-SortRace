@@ -2,12 +2,14 @@
 var qs_state = {
   sorted: false,
   data: ['F', 'D', 8, 'A', 1, 5, 9, 3, 4, 7, 9, 5],
-  start: 0,
-  end: 1,
-  swapedPivot: false,
-  pivPos: 0,
-  leftDone: false,
-  rightDone: false,
+  cheat_StepList: [],
+  cheat_CurrStep: 0,
+  // start: 0,
+  // end: 1,
+  // swapedPivot: false,
+  // pivPos: 0,
+  // leftDone: false,
+  // rightDone: false,
 }
 /** <Sort Algo #2> Init Data. */
 var ps_state = {
@@ -72,6 +74,10 @@ function setup() {
       drawCell(row, col, grid[row][col]);
     }
   }
+
+  // Cheat:
+  algo_QuickSort(0, qs_state.data.length - 1);
+  // End Cheat.
 }
 
 /**
@@ -112,10 +118,17 @@ function draw()  // P5 Frame Re-draw Fcn, Called for Every Frame.
 
 function RaceManager() {
   // Draw Next Step of Sort Algo #1
-  if (algo_QuickSort(qs_state) == null) {
-    // Finished sorting, end loop.
-    qs_state.sorted = true;
+  // if (algo_QuickSort(qs_state) == null) {
+  //   // Finished sorting, end loop.
+  //   qs_state.sorted = true;
+  // }
+  // Cheat:
+  if(qs_state.cheat_CurrStep >= qs_state.cheat_StepList.length){
+    // Done.
+    ps_state.sorted = true;
   }
+  // End Cheat.
+
 
   // Draw Next Step of Sort Algo #2
   if (algo_PoreSort(ps_state) == null) {
@@ -142,13 +155,25 @@ function RaceManager() {
  */
 function draw_UpdateData() {
   // Quick Sort
-  if (!qs_state.sorted) {
-    for (index = 0; index < qs_state.data.length; index++) {
+  // if (!qs_state.sorted) {
+  //   for (index = 0; index < qs_state.data.length; index++) {
+  //     let col = index;
+  //     grid[currRow][col] = qs_state.data[index];
+  //     drawCell(currRow, col, grid[currRow][col]);
+  //   }
+  // }
+  // Cheat:
+  if(qs_state.cheat_CurrStep < qs_state.cheat_StepList.length){
+    for(index = 0; index < qs_state.cheat_StepList[qs_state.cheat_CurrStep].length; index++){
       let col = index;
-      grid[currRow][col] = qs_state.data[index];
+      grid[currRow][col] = qs_state.cheat_StepList[qs_state.cheat_CurrStep][col];
       drawCell(currRow, col, grid[currRow][col]);
     }
+
+    qs_state.cheat_CurrStep++;
   }
+  // End Cheat.
+
 
   // Poresort
   if (!ps_state.sorted) {
@@ -174,74 +199,31 @@ function draw_UpdateData() {
 }
 
 // Quick Sort Algo code for every draw instance.
-function algo_QuickSort(state) {
-  // simple:
-
-  if(qs_state.start < qs_state.end){
-    qs_state.pivPos = qs_Partition(qs_state.data)
-  }else{
-    if(!qs_state.leftDone){
-      // Update start/end for left recusion
-    }else if(!qs_state.rightDone){
-      // Update start/end for right recusion
-    }else{
-      // Done sorting return null.
-      return null;
-    }
-  }
-
-  // simple end.
-
-
-
-  // Get new pivot index.
-
-  // Dirty bit (called swap)
-  //  if false => change 
-  
-  if(qs_state.start < qs_state.end){
-    var piv_pos = qs_Partition
-
-    // After first pass (update end).
-    qs_state.end = piv_pos - 1;
-    if(!qs_state.finishedLeftSide){
-      var piv_pos = qs_Partition(state.data);
-
-    }
-
-    // After 
-  }
-
-  var piv_pos = qs_Partition(state.data, state.start, state.end);
-  qs_state.start = qs_state.start 
-
-  if(qs_state.doneLeftSide){
-    qs_state.start = piv_pos + 1;
-    q
-  }
-
-
-  // Write your code here.
+function algo_QuickSort(start, end) {
   if(start < end){
-    // Keep sorting (not done yet)
+    var pivPos = qs_Partition(start, end);
 
-  }else{
-    // Done. Array is sorted.
-    return null;
+    // Cheat Begin:
+    // qs_state.cheat_StepList.push(new Array(qs_state.data));
+    // Cheat End.
+
+    algo_QuickSort(start, pivPos - 1); // Sort the left side of pivot
+    algo_QuickSort(pivPos + 1, end); // Sort the right side of pivot
   }
+  
 }
 
-function qs_Partition(rawArr){
+function qs_Partition(start, end){
   // Select the pivot (first element)
-  var pivot = rawArr[0];
   var newPivotIndex = start + 1;
+  var pivot = qs_state.data[start];
 
   // Find the sorted index for pivot
-  for(let currIndex = start + 1; currIndex < rawArr.length; currIndex++){
+  for(let currIndex = start + 1; currIndex <= end; currIndex++){
     // If current index element is smaller than pivot
-    if(String(rawArr[currIndex]) < String(pivot)){
+    if(String(qs_state.data[currIndex]) < String(pivot)){
       // Swap elements
-      swap(rawArr, 0, currIndex);
+      swap(qs_state.data, newPivotIndex, currIndex);
       
       // Increment the new pivot index
       newPivotIndex++;
@@ -249,8 +231,14 @@ function qs_Partition(rawArr){
   }
 
   // Put pivot in sorted place in array
-  swap(raw, start, newPivotIndex - 1);
-  qs_state.swapedPivot = true;
+  swap(qs_state.data, start, newPivotIndex - 1);
+
+  // Cheat:
+  let update = [...qs_state.data];
+  qs_state.cheat_StepList.push(update);
+  // End.
+
+  //qs_state.swapedPivot = true;
 
   // Return the new index of the pivot
   return newPivotIndex - 1;
