@@ -2,8 +2,6 @@
 var qs_state = {
   sorted: false,
   data: ['F', 'D', 8, 'A', 1, 5, 9, 3, 4, 7, 9, 5],
-  start = 0,
-  end = 11
 }
 /** <Sort Algo #2> Init Data. */
 var ps_state = {
@@ -172,45 +170,37 @@ function draw_UpdateData() {
 // Quick Sort Algo code for every draw instance.
 function algo_QuickSort(state, start, end) {
   // Write your code here.
-  if (start < end) {
+  if(start < end){
     // Keep sorting (not done yet)
-
-  } else {
+    
+  }else{
     // Done. Array is sorted.
     return null;
   }
 }
 
-function qs_Partition(rawArr) {
+function qs_Partition(rawArr, start, end){
   // Select the pivot (first element)
-  // var pivot = rawArr[0];
-  // var newPivotIndex = start + 1;
+  var pivot = rawArr[0];
+  var newPivotIndex = start + 1;
 
-  // start initialized to 0
-  // end initialized to 11        // done in object declaration
-
-  // check to see if valid arguments
-  if (start < end) {
-    // Find the sorted index for pivot
-    for (let currIndex = start + 1; currIndex < rawArr.length; currIndex++) {
-      // If current index element is smaller than pivot
-      if (String(rawArr[currIndex]) < String(pivot)) {
-        // Swap elements
-        swap(rawArr, 0, currIndex);
-
-        // Increment the new pivot index
-        newPivotIndex++;
-      }
+  // Find the sorted index for pivot
+  for(let currIndex = start + 1; currIndex < rawArr.length; currIndex++){
+    // If current index element is smaller than pivot
+    if(String(rawArr[currIndex]) < String(pivot)){
+      // Swap elements
+      swap(rawArr, 0, currIndex);
+      
+      // Increment the new pivot index
+      newPivotIndex++;
     }
-    swap(raw, start, newPivotIndex - 1)
-  }
-  else {
-    return null
   }
 
+  // Put pivot in sorted place in array
+  swap(raw, start, newPivotIndex - 1);
 
-  // // Return the new index of the pivot
-  // return newPivotIndex - 1;
+  // Return the new index of the pivot
+  return newPivotIndex - 1;
 }
 
 /**
@@ -219,11 +209,10 @@ function qs_Partition(rawArr) {
  * @param {*} firstIndex Index of first element to be swapped.
  * @param {*} secondIndex Index of second element to be swapped.
  */
-function swap(arr, firstIndex, secondIndex) {
+function swap(arr, firstIndex, secondIndex){
   let temp = arr[firstIndex];
   arr[firstIndex] = arr[secondIndex];
   arr[secondIndex] = temp;
-  return 1;
 }
 
 // Sorting algorithm #2 code.
