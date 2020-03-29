@@ -131,7 +131,7 @@ function RaceManager() {
   }
 
   // Draw Next Step of Sort Algo #3
-  if (algo_Algo3(a3_state) == null) {
+  if (algo_MergeSort(a3_state) == null) {
     // Finished sorting, end loop.
     a3_state.sorted = true;
   }
