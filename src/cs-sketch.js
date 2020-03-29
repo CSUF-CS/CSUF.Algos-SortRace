@@ -170,27 +170,27 @@ function draw_UpdateData() {
 // Quick Sort Algo code for every draw instance.
 function algo_QuickSort(state, start, end) {
   // Write your code here.
-  if(start < end){
+  if (start < end) {
     // Keep sorting (not done yet)
-    
-  }else{
+
+  } else {
     // Done. Array is sorted.
     return null;
   }
 }
 
-function qs_Partition(rawArr, start, end){
+function qs_Partition(rawArr, start, end) {
   // Select the pivot (first element)
   var pivot = rawArr[0];
   var newPivotIndex = start + 1;
 
   // Find the sorted index for pivot
-  for(let currIndex = start + 1; currIndex < rawArr.length; currIndex++){
+  for (let currIndex = start + 1; currIndex < rawArr.length; currIndex++) {
     // If current index element is smaller than pivot
-    if(String(rawArr[currIndex]) < String(pivot)){
+    if (String(rawArr[currIndex]) < String(pivot)) {
       // Swap elements
       swap(rawArr, 0, currIndex);
-      
+
       // Increment the new pivot index
       newPivotIndex++;
     }
@@ -199,6 +199,7 @@ function qs_Partition(rawArr, start, end){
   // Put pivot in sorted place in array
   if (swap(raw, start, newPivotIndex - 1) == 1) {
     // this indicates that a swap was done
+    qs_state.swapedPivot = true;
   }
 
   // Return the new index of the pivot
@@ -211,7 +212,7 @@ function qs_Partition(rawArr, start, end){
  * @param {*} firstIndex Index of first element to be swapped.
  * @param {*} secondIndex Index of second element to be swapped.
  */
-function swap(arr, firstIndex, secondIndex){
+function swap(arr, firstIndex, secondIndex) {
   let temp = arr[firstIndex];
   arr[firstIndex] = arr[secondIndex];
   arr[secondIndex] = temp;
