@@ -23,9 +23,7 @@ Zip Contents
 
   x File readme.txt.  This file.
 
-##################
-  0 File pix-js-p5-example-1.JPG.  A snapshot of the example webpage.
-###################
+  x File pix.JPG.  A snapshot of the example webpage.
 
   x File index.html. Drag and drop this into a browser to
     run the example.
