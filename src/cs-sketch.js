@@ -2,6 +2,9 @@
 var qs_state = {
   sorted: false,
   data: ['F', 'D', 8, 'A', 1, 5, 9, 3, 4, 7, 9, 5],
+  start: 0,
+  end: 1,
+  swapedPivot: false,
 }
 /** <Sort Algo #2> Init Data. */
 var ps_state = {
@@ -168,18 +171,61 @@ function draw_UpdateData() {
 }
 
 // Quick Sort Algo code for every draw instance.
-function algo_QuickSort(state, start, end) {
+function algo_QuickSort(state) {
+  // simple:
+
+  if(start < end){
+    var piv_pos = qs_Partition(qs_state.data)
+  }else{
+    if(!qs_state.leftDone){
+      // Update start/end for left recusion
+    }else if(!qs_state.rightDone){
+      // Update start/end for right recusion
+    }
+  }
+
+  // simple end.
+
+
+
+  // Get new pivot index.
+
+  // Dirty bit (called swap)
+  //  if false => change 
+  
+  if(qs_state.start < qs_state.end){
+    var piv_pos = qs_Partition
+
+    // After first pass (update end).
+    qs_state.end = piv_pos - 1;
+    if(!qs_state.finishedLeftSide){
+      var piv_pos = qs_Partition(state.data);
+
+    }
+
+    // After 
+  }
+
+  var piv_pos = qs_Partition(state.data, state.start, state.end);
+  qs_state.start = qs_state.start 
+
+  if(qs_state.doneLeftSide){
+    qs_state.start = piv_pos + 1;
+    q
+  }
+
+
   // Write your code here.
   if(start < end){
     // Keep sorting (not done yet)
-    
+
   }else{
     // Done. Array is sorted.
     return null;
   }
 }
 
-function qs_Partition(rawArr, start, end){
+function qs_Partition(rawArr){
   // Select the pivot (first element)
   var pivot = rawArr[0];
   var newPivotIndex = start + 1;
@@ -198,6 +244,7 @@ function qs_Partition(rawArr, start, end){
 
   // Put pivot in sorted place in array
   swap(raw, start, newPivotIndex - 1);
+  qs_state.swapedPivot = true;
 
   // Return the new index of the pivot
   return newPivotIndex - 1;
