@@ -5,7 +5,7 @@ var qs_state = {
   StepList: [],
   CurrStep: 0,
 }
-/** <Sort Algo #2> Init Data. */
+/** Poresort Init Data. */
 var ps_state = {
   sorted: false,
   data: ['F', 'D', 8, 'A', 1, 5, 9, 3, 4, 7, 9, 5],
@@ -285,11 +285,72 @@ function algo_PoreSort(state) {
 }
 
 // Sorting algorithm #3 code.
-function algo_Algo3(state) {
+function algo_MergeSort(state) {
   // Write your code here.
-  /* Use your own state: */ state;
-  return 1;
-
+  /* Use your own state: */ //state;
+  
+  //check to see if the array is empty
+   if (currRow == 5) return null;
+  if (state.data.length == 1) {
+	  return 1;
+  }
+  
+  if (state.data.length > 1) {
+	  let mid = state.data.length / 2;
+	  
+	  //Splits the array into two halves
+	  //var lef = [mid];
+	  var lef = {
+		  sorted: false,
+		  data: [mid],
+		  }
+	  for(let i = 0; i < mid; i += 1) {
+		  lef.data[i] = state.data[i];
+	  }
+	  //var rig = [state.data.length - mid];
+	  var rig = {
+		  sorted: false,
+		  data: [state.data.length - mid],
+		  }
+	  for(let i = mid; i < state.data.length; i += 1) {
+		  rig.data[(i - mid)] = state.data[i];
+	  }
+	  
+	  //make a recursive call to continue to split the arrays
+//	  algo_mergesort(lef);
+//	  algo_mergesort(rig);
+  
+	  let i = 0; //counter to traverse the left
+	  let j = 0; //counter to traverse the right
+	  let k = 0; //counter for recreating the original array
+	  
+	  //merge and swap left and right arrays if needed
+	  while(i < lef.data.length && j < rig.data.length) {
+		if(String(lef.data[i]) < String(rig.data[j])) {
+			state.data[k] = lef.data[i];
+			i += 1;
+		}
+		else {
+			state.data[k] = rig.data[j];
+			j += 1;
+		}
+		k+= 1;
+	  }
+	  
+	  //collect any leftover elements
+	  while(i < lef.data.length) {
+		  state.data[k] = lef.data[i];
+		  i += 1;
+		  k += 1;
+	  }
+	  while(j < rig.data.length) {
+		  state.data[k] = rig.data[j];
+		  j += 1;
+		  k += 1;
+	  }
+	  return 1;
+  }
+  
   // Return null when finished.
 }
 
