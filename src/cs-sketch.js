@@ -110,6 +110,8 @@ function draw()  // P5 Frame Re-draw Fcn, Called for Every Frame.
 
       // Draw updated state to webpage.
       draw_UpdateData();
+    }else{
+      console.log('-- Done sorting');
     }
   }
 }
