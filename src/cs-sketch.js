@@ -168,12 +168,51 @@ function draw_UpdateData() {
 }
 
 // Quick Sort Algo code for every draw instance.
-function algo_QuickSort(state) {
+function algo_QuickSort(state, start, end) {
   // Write your code here.
-  if (currRow == 5) return null;
-  return 1;
+  if(start < end){
+    // Keep sorting (not done yet)
+    
+  }else{
+    // Done. Array is sorted.
+    return null;
+  }
+}
 
-  // Return null when finished.
+function qs_Partition(rawArr, start, end){
+  // Select the pivot (first element)
+  var pivot = rawArr[0];
+  var newPivotIndex = start + 1;
+
+  // Find the sorted index for pivot
+  for(let currIndex = start + 1; currIndex < rawArr.length; currIndex++){
+    // If current index element is smaller than pivot
+    if(String(rawArr[currIndex]) < String(pivot)){
+      // Swap elements
+      swap(rawArr, 0, currIndex);
+      
+      // Increment the new pivot index
+      newPivotIndex++;
+    }
+  }
+
+  // Put pivot in sorted place in array
+  swap(raw, start, newPivotIndex - 1);
+
+  // Return the new index of the pivot
+  return newPivotIndex - 1;
+}
+
+/**
+ * Will swap position of two elements in an array.
+ * @param {*} arr Raw array used to swap values.
+ * @param {*} firstIndex Index of first element to be swapped.
+ * @param {*} secondIndex Index of second element to be swapped.
+ */
+function swap(arr, firstIndex, secondIndex){
+  let temp = arr[firstIndex];
+  arr[firstIndex] = arr[secondIndex];
+  arr[secondIndex] = temp;
 }
 
 // Sorting algorithm #2 code.
