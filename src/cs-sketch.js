@@ -121,9 +121,9 @@ function RaceManager() {
   //   qs_state.sorted = true;
   // }
   // Recursive model:
-  if(qs_state.CurrStep >= qs_state.StepList.length){
+  if (qs_state.CurrStep >= qs_state.StepList.length) {
     // Done.
-    ps_state.sorted = true;
+    qs_state.sorted = true;
   }
   // End Recursive model.
 
@@ -140,7 +140,7 @@ function RaceManager() {
   //   ms_state.sorted = true;
   // }
   // Recursive model:
-  if(ms_state.CurrStep >= ms_state.StepList.length){
+  if (ms_state.CurrStep >= ms_state.StepList.length) {
     // Done.
     ms_state.sorted = true;
   }
@@ -167,8 +167,8 @@ function draw_UpdateData() {
   //   }
   // }
   // Recursive model:
-  if(qs_state.CurrStep < qs_state.StepList.length){
-    for(index = 0; index < qs_state.StepList[qs_state.CurrStep].length; index++){
+  if (qs_state.CurrStep < qs_state.StepList.length) {
+    for (index = 0; index < qs_state.StepList[qs_state.CurrStep].length; index++) {
       let col = index;
       grid[currRow][col] = qs_state.StepList[qs_state.CurrStep][col];
       drawCell(currRow, col, grid[currRow][col]);
@@ -197,10 +197,10 @@ function draw_UpdateData() {
   //   }
   // }
   // Recursive model:
-  if(ms_state.CurrStep < ms_state.StepList.length){
-    for(index = 0; index <ms_state.StepList[ms_state.CurrStep].length; index++){
+  if (ms_state.CurrStep < ms_state.StepList.length) {
+    for (index = 0; index < ms_state.StepList[ms_state.CurrStep].length; index++) {
       let col = index + 28;
-      grid[currRow][col] = ms_state.StepList[ms_state.CurrStep][col-28];
+      grid[currRow][col] = ms_state.StepList[ms_state.CurrStep][col - 28];
       drawCell(currRow, col, grid[currRow][col]);
     }
 
@@ -214,7 +214,7 @@ function draw_UpdateData() {
 
 // Quick Sort Algo code for every draw instance.
 function algo_QuickSort(start, end) {
-  if(start < end){
+  if (start < end) {
     var pivPos = qs_Partition(start, end);
 
     // Recursive model:
@@ -225,7 +225,7 @@ function algo_QuickSort(start, end) {
     algo_QuickSort(start, pivPos - 1); // Sort the left side of pivot
     algo_QuickSort(pivPos + 1, end); // Sort the right side of pivot
   }
-  
+
 }
 
 /**
@@ -233,18 +233,18 @@ function algo_QuickSort(start, end) {
  * @param {*} start Start index
  * @param {*} end End index
  */
-function qs_Partition(start, end){
+function qs_Partition(start, end) {
   // Select the pivot (first element)
   var newPivotIndex = start + 1;
   var pivot = qs_state.data[start];
 
   // Find the sorted index for pivot
-  for(let currIndex = start + 1; currIndex <= end; currIndex++){
+  for (let currIndex = start + 1; currIndex <= end; currIndex++) {
     // If current index element is smaller than pivot
-    if(String(qs_state.data[currIndex]) < String(pivot)){
+    if (String(qs_state.data[currIndex]) < String(pivot)) {
       // Swap elements
       swap(qs_state.data, newPivotIndex, currIndex);
-      
+
       // Increment the new pivot index
       newPivotIndex++;
     }
@@ -263,7 +263,7 @@ function qs_Partition(start, end){
  * @param {*} firstIndex Index of first element to be swapped.
  * @param {*} secondIndex Index of second element to be swapped.
  */
-function swap(arr, firstIndex, secondIndex){
+function swap(arr, firstIndex, secondIndex) {
   let temp = arr[firstIndex];
   arr[firstIndex] = arr[secondIndex];
   arr[secondIndex] = temp;
@@ -304,8 +304,8 @@ function algo_PoreSort(state) {
   }
 }
 
-function algo_MergeSort (start, end){
-  if(start < end){
+function algo_MergeSort(start, end) {
+  if (start < end) {
     let mid = Math.floor((start + end) / 2)
 
     algo_MergeSort(start, mid);
@@ -317,29 +317,29 @@ function algo_MergeSort (start, end){
 
 function merge(A, start, mid, end) {
   //stores the starting position of both parts in temporary variables.
- var p = start ,q = mid+1;
- 
- var Arr = new Array(end-start+1) , k=0;
- 
- for(let i = start ;i <= end ;i++) {
-     if(p > mid)      //checks if first part comes to an end or not .
-        Arr[ k++ ] = A[ q++] ;
- 
-    else if ( q > end)   //checks if second part comes to an end or not
-        Arr[ k++ ] = A[ p++ ];
- 
-    else if( String(A[ p ]) < String(A[ q ]))     //checks which part has smaller element.
-       Arr[ k++ ] = A[ p++ ];
- 
+  var p = start, q = mid + 1;
+
+  var Arr = new Array(end - start + 1), k = 0;
+
+  for (let i = start; i <= end; i++) {
+    if (p > mid)      //checks if first part comes to an end or not .
+      Arr[k++] = A[q++];
+
+    else if (q > end)   //checks if second part comes to an end or not
+      Arr[k++] = A[p++];
+
+    else if (String(A[p]) < String(A[q]))     //checks which part has smaller element.
+      Arr[k++] = A[p++];
+
     else
-       Arr[ k++ ] = A[ q++];
+      Arr[k++] = A[q++];
   }
-   for (let p=0 ; p< k ;p ++) {
+  for (let p = 0; p < k; p++) {
     /* Now the real array has elements in sorted manner including both 
          parts.*/
-      ms_state.data[ start++ ] = Arr[ p ] ;                          
-   }
+    ms_state.data[start++] = Arr[p];
+  }
 
-   var temp = [...ms_state.data];
-   ms_state.StepList.push(temp);
- }
+  var temp = [...ms_state.data];
+  ms_state.StepList.push(temp);
+}
